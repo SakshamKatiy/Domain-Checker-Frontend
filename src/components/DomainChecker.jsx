@@ -18,6 +18,8 @@ const DomainChecker = () => {
       setResult(response.data.data);
       setError(null);
     } catch (err) {
+      // Log the error for debugging
+      console.error('Error fetching domain information:', err);
       setError('Error fetching domain information');
       setResult(null);
     }
@@ -52,9 +54,7 @@ const DomainChecker = () => {
             {result.map((domainData, index) => (
               <tr key={index}>
                 <td>{domainData.domain}</td>
-                {/* Dynamically set the registration status */}
                 <td>{domainData.registrationStatus === 'Inactive' ? 'Inactive' : 'Active'}</td>
-
                 <td>{domainData.creation_date}</td>
                 <td>{domainData.expiry_date}</td>
                 <td>{domainData.days_left}</td>
